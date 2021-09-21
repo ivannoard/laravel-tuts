@@ -5,14 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminLoginController extends Controller
+class LoginController extends Controller
 {
-
-    public function login()
+    public function index()
     {
-        return view('pages.login', [
-            'path' => 'login-admin'
-        ]);
+        return view('pages.login');
     }
 
     public function authenticate(Request $request)
@@ -24,10 +21,10 @@ class AdminLoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard-admin');
+            return redirect()->intended('dashboard');
         }
 
-        return 'gagal';
+        return 'GAGAL';
     }
 
     public function logout(Request $request)

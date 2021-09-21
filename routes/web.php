@@ -27,12 +27,18 @@ Route::get('/blog', function () {
     ]);
 });
 
-Route::get('/login-admin', 'AdminLoginController@login')->name('login');
-Route::post('/login-admin', 'AdminLoginController@authenticate');
-Route::get('/dashboard-admin', 'AdminController@index')->middleware('auth');
-Route::get('/dashboard-admin/logout', 'AdminLoginController@logout');
+Route::get('/login-space', 'LoginController@index')->name('login');
+Route::post('/login-space', 'LoginController@authenticate');
+Route::get('/dashboard', 'CreatorController@index')->middleware('auth');
+Route::get('/dashboard/logout', 'LoginController@logout');
+// Route::get('/admin', 'AdminLoginController@login')->name('login');
+// Route::post('/admin', 'AdminLoginController@authenticate');
+// Route::get('/dashboard', 'AdminController@index')->middleware('auth');
+// Route::get('/dashboard/logout', 'AdminLoginController@logout');
 
-Route::get('/author-login', 'AuthorLoginController@login');
+// Route::get('/creator', 'AuthorLoginController@login')->name('login');
+// Route::post('/creator', 'AuthorLoginController@authenticate');
+// Route::get('/creator-space', 'AuthorController@index')->middleware('auth');
 // Route::get('/categories', function () {
 //     return view('layout.secondary');
 // });

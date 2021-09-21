@@ -2,13 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
-use App\Models\Author;
 use App\Models\Category;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Post;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,12 +19,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::create([
+            'id' => 0,
+            'name' => 'admin',
+            'role' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('password')
+        ]);
         Doctor::factory(5)->create();
         Patient::factory(10)->create();
         Room::factory(3)->create();
-        Admin::factory(3)->create();
-        Author::factory(5)->create();
         Post::factory(20)->create();
+        User::factory(5)->create();
 
         Category::create([
             'name' => 'Kesehatan Gizi',
