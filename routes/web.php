@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminLoginController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,16 +21,20 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/blog', function () {
-    return view('layout.secondary', [
-        'title' => 'Blog | Personal Project'
-    ]);
-});
+Route::get('/blog', 'BlogController@index');
+Route::get('/blog/allpost', 'BlogController@allpost');
+Route::get('/blog/{post:slug}', 'BlogController@show');
+// Route::get('/blog', function () {
+//     return view('layout.secondary', [
+//         'title' => 'Blog | Personal Project'
+//     ]);
+// });
 
 Route::get('/login-space', 'LoginController@index')->name('login');
 Route::post('/login-space', 'LoginController@authenticate');
 Route::get('/dashboard', 'CreatorController@index')->middleware('auth');
 Route::get('/dashboard/logout', 'LoginController@logout');
+
 // Route::get('/admin', 'AdminLoginController@login')->name('login');
 // Route::post('/admin', 'AdminLoginController@authenticate');
 // Route::get('/dashboard', 'AdminController@index')->middleware('auth');
