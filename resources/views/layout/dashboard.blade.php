@@ -58,21 +58,21 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="/dashboard-admin">
+            <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="/dashboard">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link href="{{ Request::is('orders') ? 'active' : '' }} href="/orders">
+            <a class="nav-link {{ Request::is('dashboard-post') ? 'active' : '' }}" href="/dashboard-post">
               <span data-feather="file"></span>
-              Orders
+              Postingan Anda
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="shopping-cart"></span>
-              Products
+              Komentar
             </a>
           </li>
           <li class="nav-item">
@@ -104,7 +104,7 @@
           @if (auth()->user()->role == 'admin')
             Halo Admin            
           @else
-            Halo, {{auth()->user()->role}}
+            Welcome Back, {{auth()->user()->role}}
           @endif
         </h1>
 
@@ -120,29 +120,11 @@
               This week
             </button>
           </div>          
-        @else
-          <a class="btn btn-primary" href="">Make New Post</a>
         @endif
       
       </div>
 
-      <h3 class="">
-        Your Post
-      </h3>
-
-      <div class="row">
-        @foreach ($post as $item)
-          <div class="col-lg-3">
-            <div class="card">
-              <img src="https://source.unsplash.com/1600x900/?health" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">{{ $item->title }}</h5>
-                <p class="card-text">{{ $item->excerpt }}</p>
-              </div>
-            </div>
-          </div>
-        @endforeach  
-      </div>
+      @yield('content')
 
     </main>
   </div>

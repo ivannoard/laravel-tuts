@@ -10,13 +10,13 @@ class CreatorController extends Controller
     public function index()
     {
         if (auth()->user()->role == 'admin') {
-            return view('layout.dashboard', [
+            return view('pages.dashboard-post', [
                 'role' => 'Admin'
             ]);
         } else {
-            return view('layout.dashboard', [
+            return view('pages.dashboard-post', [
                 'role' => 'creator',
-                'post' => Post::all()->where('user_id', auth()->user()->id)
+                'post' => Post::where('user_id', auth()->user()->id)->take(4)->get()
             ]);
         }
     }

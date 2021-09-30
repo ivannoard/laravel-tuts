@@ -19,13 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'id' => 0,
-            'name' => 'admin',
-            'role' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('password')
-        ]);
         Doctor::factory(5)->create();
         Patient::factory(10)->create();
         Room::factory(3)->create();

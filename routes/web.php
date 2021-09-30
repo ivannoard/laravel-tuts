@@ -24,27 +24,10 @@ Route::get('/', function () {
 Route::get('/blog', 'BlogController@index');
 Route::get('/blog/allpost', 'BlogController@allpost');
 Route::get('/blog/{post:slug}', 'BlogController@show');
-// Route::get('/blog', function () {
-//     return view('layout.secondary', [
-//         'title' => 'Blog | Personal Project'
-//     ]);
-// });
 
 Route::get('/login-space', 'LoginController@index')->name('login');
 Route::post('/login-space', 'LoginController@authenticate');
 Route::get('/dashboard', 'CreatorController@index')->middleware('auth');
 Route::get('/dashboard/logout', 'LoginController@logout');
 
-// Route::get('/admin', 'AdminLoginController@login')->name('login');
-// Route::post('/admin', 'AdminLoginController@authenticate');
-// Route::get('/dashboard', 'AdminController@index')->middleware('auth');
-// Route::get('/dashboard/logout', 'AdminLoginController@logout');
-
-// Route::get('/creator', 'AuthorLoginController@login')->name('login');
-// Route::post('/creator', 'AuthorLoginController@authenticate');
-// Route::get('/creator-space', 'AuthorController@index')->middleware('auth');
-// Route::get('/categories', function () {
-//     return view('layout.secondary');
-// });
-
-// Route::view('/', 'welcome');
+Route::resource('/dashboard-post', 'DashboardPostController');
